@@ -1,0 +1,39 @@
+{
+  "project_info": {
+    "project_number": "290745477142",
+    "project_id": "asystentgotowania",
+    "storage_bucket": "asystentgotowania.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:290745477142:android:f36bff97ed163893872d37",
+        "android_client_info": {
+          "package_name": "com.example.myapplication"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "290745477142-iafhgcverntui37ajpabvfa7jm0e61vc.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyA2h4NfPwz6op1YHdvUGEMxKiRa1hPeoYw"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": [
+            {
+              "client_id": "290745477142-iafhgcverntui37ajpabvfa7jm0e61vc.apps.googleusercontent.com",
+              "client_type": 3
+            }
+          ]
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}

@@ -1,0 +1,29 @@
+<?xml version="1.0" encoding="utf-8"?>
+<menu xmlns:android="http://schemas.android.com/apk/res/android">
+
+
+    <item
+        android:id="@+id/home"
+        android:icon="@drawable/ic_home"
+        android:title="Odkrywaj"/>
+
+    <item
+        android:id="@+id/search"
+        android:icon="@drawable/ic_search"
+        android:title="Szukaj"/>
+
+    <item
+        android:id="@+id/my_recipes"
+        android:icon="@drawable/ic_recipebook"
+        android:title="Moje Przepisy"/>
+
+    <item
+        android:id="@+id/calendar"
+        android:icon="@drawable/ic_calendar"
+        android:title="Mój tydzień"/>
+
+    <item
+        android:id="@+id/shopping"
+        android:icon="@drawable/ic_shopping"
+        android:title="Zakupy"/>
+</menu>
