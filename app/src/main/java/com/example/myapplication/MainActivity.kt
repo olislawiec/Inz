@@ -23,19 +23,7 @@ class MainActivity : AppCompatActivity() {
 
         super.onCreate(savedInstanceState)
         binding = ActivityMainBinding.inflate(layoutInflater)
-        val db = FirebaseFirestore.getInstance()
-        val docRef = db.collection("Recipes").document("eKhLdy0kftLNOayFDLp2")
-        db.collection("Recipes")
-            //.whereEqualTo("capital", true)
-            .get()
-            .addOnSuccessListener { documents ->
-                for (document in documents) {
-                    Log.d("KUPA1", "${document.id} => ${document.data}")
-                }
-            }
-            .addOnFailureListener { exception ->
-                Log.w("KUPA1", "Error getting documents: ", exception)
-            }
+
 
 
 

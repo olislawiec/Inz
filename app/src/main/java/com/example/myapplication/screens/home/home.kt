@@ -34,7 +34,7 @@ class home : Fragment() {
         binding.recipesList.adapter = adapter
 
         val db = FirebaseFirestore.getInstance()
-        val docRef = db.collection("Recipes").document("eKhLdy0kftLNOayFDLp2")
+
         db.collection("Recipes")
             //.whereEqualTo("capital", true)
             .get()
@@ -45,11 +45,13 @@ class home : Fragment() {
                     recipe.let { recipes.add(it!!)  }
 
                     adapter.submitList(recipes)
-                    Log.d("KUPA1", "${document.id} => ${document.data}")
+
+                    Log.d("KUPA2222", "${document.id} => ${document.data}")
+                    Log.d("Lisya", recipes.toString())
                 }
             }
             .addOnFailureListener { exception ->
-                Log.w("KUPA1", "Error getting documents: ", exception)
+                Log.w("KUPA3", "Error getting documents: ", exception)
             }
 
         return binding.root
