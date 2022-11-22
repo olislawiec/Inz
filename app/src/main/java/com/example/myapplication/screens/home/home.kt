@@ -39,8 +39,9 @@ class home : Fragment() {
             //.whereEqualTo("capital", true)
             .get()
             .addOnSuccessListener { documents ->
+                val recipes = mutableListOf<Recipe>()
                 for (document in documents) {
-                    val recipes = mutableListOf<Recipe>()
+
                     val recipe = document.toObject(Recipe::class.java)
                     recipe.let { recipes.add(it!!)  }
 
@@ -49,6 +50,7 @@ class home : Fragment() {
                     Log.d("KUPA2222", "${document.id} => ${document.data}")
                     Log.d("Lisya", recipes.toString())
                 }
+                adapter.submitList(recipes)
             }
             .addOnFailureListener { exception ->
                 Log.w("KUPA3", "Error getting documents: ", exception)
