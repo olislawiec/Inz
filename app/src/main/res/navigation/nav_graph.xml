@@ -19,7 +19,11 @@
         android:id="@+id/search"
         android:name="com.example.myapplication.screens.search.search"
         android:label="fragment_search"
-        tools:layout="@layout/fragment_search" />
+        tools:layout="@layout/fragment_search" >
+        <action
+            android:id="@+id/action_search_to_recipedetails"
+            app:destination="@id/recipedetails" />
+    </fragment>
     <fragment
         android:id="@+id/shopping"
         android:name="com.example.myapplication.screens.shopping.shopping"

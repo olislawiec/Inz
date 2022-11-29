@@ -47,7 +47,7 @@ class home : Fragment() {
                     val recipe = document.toObject(Recipe::class.java)
                     recipe.let { recipes.add(it!!)  }
 
-                    adapter.submitList(recipes)
+
 
                     Log.d("KUPA2222", "${document.id} => ${document.data}")
                     Log.d("Lisya", recipes.toString())
