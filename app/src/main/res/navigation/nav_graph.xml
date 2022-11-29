@@ -1,0 +1,50 @@
+<?xml version="1.0" encoding="utf-8"?>
+<navigation xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:id="@+id/nav_graph.xml"
+    app:startDestination="@+id/home">
+
+    <fragment
+        android:id="@+id/calendar"
+        android:name="com.example.myapplication.screens.calendar.calendar"
+        android:label="fragment_calendar"
+        tools:layout="@layout/fragment_calendar" />
+    <fragment
+        android:id="@+id/my_recipes"
+        android:name="com.example.myapplication.screens.recipebook.recipebook"
+        android:label="fragment_recipebook"
+        tools:layout="@layout/fragment_recipebook" />
+    <fragment
+        android:id="@+id/search"
+        android:name="com.example.myapplication.screens.search.search"
+        android:label="fragment_search"
+        tools:layout="@layout/fragment_search" />
+    <fragment
+        android:id="@+id/shopping"
+        android:name="com.example.myapplication.screens.shopping.shopping"
+        android:label="fragment_shopping"
+        tools:layout="@layout/fragment_shopping" />
+    <fragment
+        android:id="@+id/home"
+        android:name="com.example.myapplication.screens.home.home"
+        android:label="home" >
+        <action
+            android:id="@+id/action_home_to_recipedetails2"
+            app:destination="@id/recipedetails" />
+    </fragment>
+    <activity
+        android:id="@+id/mainActivity"
+        android:name="com.example.myapplication.MainActivity"
+        android:label="activity_main"
+        tools:layout="@layout/activity_main" />
+    <fragment
+        android:id="@+id/recipedetails"
+        android:name="com.example.myapplication.screens.recipedetails.recipedetails"
+        android:label="fragment_recipedetails"
+        tools:layout="@layout/fragment_recipedetails" >
+        <argument
+            android:name="recipe"
+            app:argType="com.example.myapplication.objects.Recipe" />
+    </fragment>
+</navigation>

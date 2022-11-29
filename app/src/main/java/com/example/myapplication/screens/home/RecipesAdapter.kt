@@ -10,9 +10,7 @@ import com.example.myapplication.databinding.RecipeBinding
 import com.example.myapplication.objects.Recipe
 
 
-class RecipesAdapter(
-
-) : ListAdapter<Recipe, ViewHolder>(
+class RecipesAdapter(private val clicklfordetailslistener: RecipeListener) : ListAdapter<Recipe, ViewHolder>(
     UsersDiffCallback()
 ) {
 
@@ -21,19 +19,25 @@ class RecipesAdapter(
     }
 
     override fun onBindViewHolder(holder: ViewHolder, position: Int) {
-        holder.bind(getItem(position))
+        holder.bind(getItem(position), clicklfordetailslistener)
     }
 
 
 }
 class ViewHolder private constructor(val binding: RecipeBinding): RecyclerView.ViewHolder(binding.root) {
     fun bind(
-        user: Recipe
+        recipe: Recipe,
+        clicklfordetailslistener: RecipeListener
     ) {
-        binding.name = user.name
-        binding.url = user.image
-
+        binding.recipe = recipe
+        binding.name = recipe.name
+        binding.url = recipe.image
+        binding.clicklfordetailslistener = clicklfordetailslistener
         binding.executePendingBindings()
+
+
+
+
 
     }
     companion object {
@@ -53,6 +57,10 @@ class UsersDiffCallback: DiffUtil.ItemCallback<Recipe>() {
         return false
     }
 
+
+}
+class RecipeListener(val clickListener: (recipe: Recipe) -> Unit) {
+    fun onClick(recipe: Recipe) = clickListener(recipe)
 }
 //class UsersListenerDelete(val clickListener: (user: wiktor.app.other.User) -> Unit) {
 //    fun onClick(user: wiktor.app.other.User) = clickListener(user)

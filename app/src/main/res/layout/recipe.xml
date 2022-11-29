@@ -5,6 +5,12 @@
 
     <data>
         <variable
+            name="recipe"
+            type="com.example.myapplication.objects.Recipe" />
+        <variable
+            name="clicklfordetailslistener"
+            type="com.example.myapplication.screens.home.RecipeListener" />
+        <variable
             name="name"
             type="String" />
         <variable
@@ -24,6 +30,7 @@
             app:imageUrl="@{url}"
             app:layout_constraintBottom_toBottomOf="parent"
             app:layout_constraintStart_toStartOf="parent"
+            android:onClick="@{() -> clicklfordetailslistener.onClick(recipe)}"
             app:layout_constraintTop_toTopOf="parent"></ImageView>
 
         <TextView

@@ -21,3 +21,16 @@ fun bindImage(imgView: ImageView, imgUrl: String) {
     Log.d("Link",imgUrl)
 
 }
+
+@BindingAdapter("imageUrl2")
+fun bindImage2(imgView: ImageView, imgUrl: String) {
+    imgView.visibility = View.GONE
+
+    val imgUri = imgUrl?.toUri()?.buildUpon()?.scheme("https")?.build()
+    Glide.with(imgView.context)
+        .load(imgUri)
+
+        .into(imgView)
+    imgView.visibility = View.VISIBLE
+    Log.d("Link",imgUrl)}
+
