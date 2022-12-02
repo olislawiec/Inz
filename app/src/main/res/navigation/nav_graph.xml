@@ -14,7 +14,11 @@
         android:id="@+id/my_recipes"
         android:name="com.example.myapplication.screens.recipebook.recipebook"
         android:label="fragment_recipebook"
-        tools:layout="@layout/fragment_recipebook" />
+        tools:layout="@layout/fragment_recipebook" >
+        <action
+            android:id="@+id/action_my_recipes_to_addeditrecipe"
+            app:destination="@id/addeditrecipe" />
+    </fragment>
     <fragment
         android:id="@+id/search"
         android:name="com.example.myapplication.screens.search.search"
@@ -50,5 +54,14 @@
         <argument
             android:name="recipe"
             app:argType="com.example.myapplication.objects.Recipe" />
+    </fragment>
+    <fragment
+        android:id="@+id/addeditrecipe"
+        android:name="com.example.myapplication.screens.recipebook.addeditrecipe"
+        android:label="addeditrecipe" >
+        <argument
+            android:name="recipeid"
+            app:argType="string"
+            app:nullable="true" />
     </fragment>
 </navigation>
