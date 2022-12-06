@@ -25,7 +25,7 @@ class search : Fragment() {
         fun newInstance() = search()
     }
 
-
+    private lateinit var db: FirebaseFirestore
     private lateinit var binding: FragmentSearchBinding
     private lateinit var adapter: RecipesAdapter
     private lateinit var viewModel: SearchViewModel
@@ -37,11 +37,13 @@ class search : Fragment() {
         DataBindingUtil.inflate<FragmentSearchBinding>(inflater, R.layout.fragment_search,container,false)
 
 
-        adapter = RecipesAdapter(RecipeListener { recipe ->  findNavController().navigate(
-            searchDirections.actionSearchToRecipedetails(recipe)) } )
+        adapter = RecipesAdapter(RecipeListener { recipe ->
+            findNavController().navigate(
+            searchDirections.actionSearchToRecipedetails(recipe, true))
+        } )
         binding.searchedItems.adapter = adapter
 
-        val db = FirebaseFirestore.getInstance()
+        db = FirebaseFirestore.getInstance()
         binding.searchButton.setOnClickListener {
             db.collection("Recipes")
                 //.whereArrayContains("name", binding.searchText.text)
@@ -66,6 +68,34 @@ class search : Fragment() {
                 }
         }
         return binding.root
+    }
+
+    override fun onResume() {
+        super.onResume()
+        if (!binding.searchText.text.toString().isNullOrEmpty()){
+            db.collection("Recipes")
+                //.whereArrayContains("name", binding.searchText.text)
+                .get()
+                .addOnSuccessListener { documents ->
+                    var recipes = mutableListOf<Recipe>()
+                    for (document in documents) {
+
+                        val recipe = document.toObject(Recipe::class.java)
+                        recipe.let { recipes.add(it!!) }
+
+
+
+                        Log.d("KUPAsearch", "${document.id} => ${document.data}")
+                        Log.d("Lisyasearch", recipes.toString())
+                    }
+                    recipes = recipes.filter { binding.searchText.text in it.name }.toMutableList()
+                    adapter.submitList(recipes)
+                }
+                .addOnFailureListener { exception ->
+                    Log.w("KUPA3search", "Error getting documents: ", exception)
+                }
+
+        }
     }
 
     override fun onActivityCreated(savedInstanceState: Bundle?) {

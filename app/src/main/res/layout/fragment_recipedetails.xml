@@ -91,6 +91,34 @@
                 app:layout_constraintStart_toStartOf="parent"
                 app:layout_constraintTop_toBottomOf="@+id/textView3" />
 
+            <Button
+                android:id="@+id/add_to_my_recipes"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="37dp"
+                android:text="Dodaj do moich przepisów"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toBottomOf="@+id/textView6"></Button>
+
+            <Button
+                android:id="@+id/add_to_calendar"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:text="Dodaj do kalendarza"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toBottomOf="@+id/add_to_shoppinglist"></Button>
+
+            <Button
+                android:id="@+id/add_to_shoppinglist"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:text="Dodaj do listy zakupów"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toBottomOf="@+id/add_to_my_recipes"></Button>
+
 
         </androidx.constraintlayout.widget.ConstraintLayout>
     </androidx.core.widget.NestedScrollView>

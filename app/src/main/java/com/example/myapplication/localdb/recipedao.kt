@@ -1,5 +1,6 @@
 package com.example.myapplication.localdb
 
+import androidx.lifecycle.LiveData
 import androidx.room.*
 import androidx.room.Dao
 import androidx.room.Delete
@@ -14,5 +15,18 @@ interface RecipeDao {
     @Update
     fun update(recipe:RecipeItem)
     @Query( "SELECT * from recipebook")
-    fun getallrecipes(): List<RecipeItem>
+    fun getallrecipes(): LiveData<List<RecipeItem>>
+    @Query("SELECT * from recipebook where recipeId==:id")
+    fun getProduct(id: Long): RecipeItem?
+
+
+
+    @Insert
+    fun insert(recipe: RecipeItemCalendar)
+    @Delete
+    fun delete(recipe: RecipeItemCalendar)
+    @Query( "SELECT * from recipecalendar")
+    fun getallrecipesdates(): LiveData<List<RecipeItemCalendar>>
+    @Update
+    fun update(recipe:RecipeItemCalendar)
 }

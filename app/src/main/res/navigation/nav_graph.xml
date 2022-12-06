@@ -9,7 +9,11 @@
         android:id="@+id/calendar"
         android:name="com.example.myapplication.screens.calendar.calendar"
         android:label="fragment_calendar"
-        tools:layout="@layout/fragment_calendar" />
+        tools:layout="@layout/fragment_calendar" >
+        <action
+            android:id="@+id/action_calendar_to_recipedetails"
+            app:destination="@id/recipedetails" />
+    </fragment>
     <fragment
         android:id="@+id/my_recipes"
         android:name="com.example.myapplication.screens.recipebook.recipebook"
@@ -18,6 +22,9 @@
         <action
             android:id="@+id/action_my_recipes_to_addeditrecipe"
             app:destination="@id/addeditrecipe" />
+        <action
+            android:id="@+id/action_my_recipes_to_recipedetails"
+            app:destination="@id/recipedetails" />
     </fragment>
     <fragment
         android:id="@+id/search"
@@ -54,6 +61,17 @@
         <argument
             android:name="recipe"
             app:argType="com.example.myapplication.objects.Recipe" />
+        <argument
+            android:name="show_addtomyrecipes"
+            app:argType="boolean" />
+        <action
+            android:id="@+id/action_recipedetails_to_my_recipes"
+            app:destination="@id/my_recipes"
+            app:popUpTo="@id/my_recipes" />
+        <action
+            android:id="@+id/action_recipedetails_to_calendar"
+            app:destination="@id/calendar"
+            app:popUpTo="@id/calendar" />
     </fragment>
     <fragment
         android:id="@+id/addeditrecipe"

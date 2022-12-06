@@ -5,6 +5,9 @@ import androidx.room.ColumnInfo
 import androidx.room.Entity
 import androidx.room.PrimaryKey
 import com.example.myapplication.screens.recipedetails.recipedetails
+import com.google.type.DateTime
+import java.util.*
+
 
 @Entity(tableName = "recipebook")
 data class RecipeItem(
@@ -17,4 +20,22 @@ data class RecipeItem(
     @ColumnInfo(name = "recipe_details")
     var recipeDetails: String = "",
     @ColumnInfo(name = "recipe_imageurl")
-    var recipeImageUrl: String = "http://www.tea-tron.com/antorodriguez/blog/wp-content/uploads/2016/04/image-not-found-4a963b95bf081c3ea02923dceaeb3f8085e1a654fc54840aac61a57a60903fef.png")
+    var recipeImageUrl: String = "https://firebasestorage.googleapis.com/v0/b/asystentgotowania.appspot.com/o/notfound.png?alt=media&token=4847c5f0-bb50-41f1-9d10-54e18e375bd3")
+
+
+@Entity(tableName = "recipecalendar")
+data class RecipeItemCalendar(
+    @PrimaryKey(autoGenerate = true)
+    var recipeId: Long = 0L,
+    @ColumnInfo(name = "recipe_namecal")
+    var recipeName: String = "",
+    @ColumnInfo(name = "recipe_datecal")
+    var recipedate: String="" ,
+    @ColumnInfo(name = "recipe_shopping_listcal")
+    var recipeShoppingList: String = "",
+    @ColumnInfo(name = "recipe_detailscal")
+    var recipeDetails: String = "",
+    @ColumnInfo(name = "recipe_imageurlcal")
+    var recipeImageUrl: String = "https://firebasestorage.googleapis.com/v0/b/asystentgotowania.appspot.com/o/notfound.png?alt=media&token=4847c5f0-bb50-41f1-9d10-54e18e375bd3")
+
+

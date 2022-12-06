@@ -1,0 +1,76 @@
+<?xml version="1.0" encoding="utf-8"?>
+<layout xmlns:tools="http://schemas.android.com/tools"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:android="http://schemas.android.com/apk/res/android">
+
+    <data>
+        <variable
+            name="recipe"
+            type="com.example.myapplication.localdb.RecipeItem" />
+        <variable
+            name="clicklfordetailslistener"
+            type="com.example.myapplication.screens.recipebook.RecipeBookListener" />
+        <variable
+            name="clicklforeditslistener"
+            type="com.example.myapplication.screens.recipebook.RecipeBookListenerEdit" />
+        <variable
+            name="clickforremovelistener"
+            type="com.example.myapplication.screens.recipebook.RecipeBookListenerDelete" />
+        <variable
+            name="name"
+            type="String" />
+        <variable
+            name="url"
+            type="String" />
+
+    </data>
+
+    <androidx.constraintlayout.widget.ConstraintLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content">
+
+        <ImageView
+            android:id="@+id/recipe_photo"
+            android:layout_width="match_parent"
+            android:layout_height="150dp"
+            android:onClick="@{() -> clicklfordetailslistener.onClick(recipe)}"
+            app:imageUrl="@{url}"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toTopOf="parent"></ImageView>
+
+        <TextView
+            android:id="@+id/recipe_name"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="@{name}"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@+id/recipe_photo">
+
+        </TextView>
+
+        <ImageButton
+            android:onClick="@{()->clicklforeditslistener.onClick(recipe)}"
+            android:id="@+id/recipe_edit"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:src="@drawable/ic_edit"
+            app:layout_constraintBottom_toTopOf="@+id/recipe_remove"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintTop_toBottomOf="@+id/recipe_photo"></ImageButton>
+
+        <ImageButton
+            android:onClick="@{()->clickforremovelistener.onClick(recipe)}"
+            android:id="@+id/recipe_remove"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:src="@drawable/ic_baseline_remove_24"
+            app:layout_constraintBottom_toTopOf="@+id/recipe_photo"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintTop_toBottomOf="@+id/recipe_edit"></ImageButton>
+
+    </androidx.constraintlayout.widget.ConstraintLayout>
+</layout>

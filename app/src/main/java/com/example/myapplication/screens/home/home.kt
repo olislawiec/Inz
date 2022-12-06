@@ -32,7 +32,7 @@ class home : Fragment() {
             DataBindingUtil.inflate<FragmentHomeBinding>(inflater, R.layout.fragment_home,container,false)
 
 
-        adapter = RecipesAdapter(RecipeListener {recipe ->  findNavController().navigate(homeDirections.actionHomeToRecipedetails2(recipe)) } )
+        adapter = RecipesAdapter(RecipeListener {recipe ->  findNavController().navigate(homeDirections.actionHomeToRecipedetails2(recipe,true)) } )
         binding.recipesList.adapter = adapter
 
         val db = FirebaseFirestore.getInstance()

@@ -5,7 +5,7 @@ import androidx.room.Database
 import androidx.room.Room
 import androidx.room.RoomDatabase
 
-@Database(entities = [RecipeItem::class], version = 2, exportSchema = false)
+@Database(entities = [RecipeItem::class,RecipeItemCalendar::class], version = 7, exportSchema = false)
 abstract class RecipesDatabase: RoomDatabase() {
     abstract val recipesDatabaseDao: RecipeDao
     companion object {

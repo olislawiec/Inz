@@ -7,9 +7,10 @@ import androidx.recyclerview.widget.ListAdapter
 import androidx.recyclerview.widget.RecyclerView
 import com.example.myapplication.databinding.IngredientBinding
 import com.example.myapplication.objects.Ingredient
+import com.example.myapplication.objects.Recipe
 
 
-class IngredientsAdapter() : ListAdapter<Ingredient, ViewHolderIngredient>(
+class IngredientsAdapter(private val listener: IngredientListener) : ListAdapter<Ingredient, ViewHolderIngredient>(
     IngredientDiffCallback()
 ) {
 
@@ -18,7 +19,7 @@ class IngredientsAdapter() : ListAdapter<Ingredient, ViewHolderIngredient>(
     }
 
     override fun onBindViewHolder(holder: ViewHolderIngredient, position: Int) {
-        holder.bind(getItem(position))
+        holder.bind(getItem(position), listener)
     }
 
 
@@ -26,9 +27,11 @@ class IngredientsAdapter() : ListAdapter<Ingredient, ViewHolderIngredient>(
 class ViewHolderIngredient private constructor(val binding: IngredientBinding): RecyclerView.ViewHolder(binding.root) {
     fun bind(
         ingredient: Ingredient,
+        listener: IngredientListener
 
     ) {
         binding.ingredient = ingredient
+        binding.listener = listener
         binding.executePendingBindings()
 
 
@@ -54,4 +57,8 @@ class IngredientDiffCallback: DiffUtil.ItemCallback<Ingredient>() {
     }
 
 
+
+}
+class IngredientListener(val clickListener: (ingredient: Ingredient) -> Unit) {
+    fun onClick(ingredient: Ingredient) = clickListener(ingredient)
 }

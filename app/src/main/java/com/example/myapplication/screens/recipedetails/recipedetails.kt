@@ -8,9 +8,17 @@ import android.widget.ArrayAdapter
 import android.widget.ListView
 import androidx.databinding.DataBindingUtil
 import androidx.fragment.app.Fragment
+import androidx.lifecycle.Observer
 import androidx.lifecycle.ViewModelProvider
+import androidx.navigation.fragment.findNavController
 import com.example.myapplication.R
 import com.example.myapplication.databinding.FragmentRecipedetailsBinding
+import com.example.myapplication.localdb.RecipesDatabase
+import com.example.myapplication.screens.recipebook.AddeditrecipeViewModel
+import com.example.myapplication.screens.recipebook.AddeditrecipeViewModelFactory
+import com.google.android.material.datepicker.MaterialDatePicker
+import java.text.SimpleDateFormat
+import java.util.*
 
 class recipedetails : Fragment() {
 
@@ -25,6 +33,7 @@ class recipedetails : Fragment() {
         inflater: LayoutInflater, container: ViewGroup?,
         savedInstanceState: Bundle?
     ): View? {
+        val application = requireNotNull(this.activity).application
         val args = recipedetailsArgs.fromBundle(requireArguments())
         val recipe = args.recipe
         binding = DataBindingUtil.inflate<FragmentRecipedetailsBinding>(inflater, R.layout.fragment_recipedetails,container,false)
@@ -33,6 +42,15 @@ class recipedetails : Fragment() {
         val arrayAdapter: ArrayAdapter<*>
         val list= recipe.shoppinglist.replace('#',' ').split('|')
 
+
+        val dataSource = RecipesDatabase.getInstance(application).recipesDatabaseDao
+        val viewModelFactory = RecipeDetailsViewModelFactory(
+            dataSource
+        )
+        viewModel = ViewModelProvider(this, viewModelFactory).get(
+            RecipedetailsViewModel::class.java
+        )
+
         // access the listView from xml file
         var mListView = binding.shoppingList
         arrayAdapter = ArrayAdapter(requireContext(),
@@ -40,6 +58,43 @@ class recipedetails : Fragment() {
         mListView.adapter = arrayAdapter
         mListView.setClickable(false)
         justifyListViewHeightBasedOnChildren(mListView)
+        if(!args.showAddtomyrecipes){
+            binding.addToMyRecipes.visibility=View.GONE
+        }
+        else{
+            binding.addToMyRecipes.visibility=View.VISIBLE
+        }
+        binding.addToMyRecipes.setOnClickListener { viewModel.addRecipeToMyRecipes(args.recipe) }
+        binding.addToCalendar.setOnClickListener {
+
+            val datePicker = MaterialDatePicker.Builder.datePicker()
+                .setTitleText("Wybierz date")
+                .setSelection(MaterialDatePicker.todayInUtcMilliseconds())
+                .build()
+
+            datePicker.show(requireActivity().supportFragmentManager,"data")
+            datePicker.addOnPositiveButtonClickListener {
+
+                viewModel.addRecipeToCalendar(args.recipe,it.toString())
+
+
+            }
+        }
+        viewModel.updated.observe(viewLifecycleOwner, Observer {
+            if (it){
+                findNavController().popBackStack()
+                viewModel.updated.value=false
+
+            }
+        })
+        viewModel.updatedcal.observe(viewLifecycleOwner, Observer {
+            if (it){
+                findNavController().popBackStack()
+                viewModel.updatedcal.value=false
+
+            }
+        })
+
         return binding.root
     }
 
