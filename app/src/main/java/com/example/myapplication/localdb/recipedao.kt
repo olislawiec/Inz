@@ -29,4 +29,14 @@ interface RecipeDao {
     fun getallrecipesdates(): LiveData<List<RecipeItemCalendar>>
     @Update
     fun update(recipe:RecipeItemCalendar)
+
+
+    @Insert
+    fun insert(recipe: RecipeItemShoppingList)
+    @Delete
+    fun delete(recipe: RecipeItemShoppingList)
+    @Query( "SELECT * from recipeshopinglist")
+    fun getshoppinglist(): LiveData<List<RecipeItemShoppingList>>
+
+
 }

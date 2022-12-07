@@ -41,7 +41,7 @@
             app:layout_constraintTop_toTopOf="parent"></ImageView>
 
         <TextView
-            android:id="@+id/recipe_name"
+            android:id="@+id/recipe_nameshoppinglist"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:text="@{name}"
@@ -58,13 +58,13 @@
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:src="@drawable/ic_edit"
-            app:layout_constraintBottom_toTopOf="@+id/recipe_remove"
+            app:layout_constraintBottom_toTopOf="@+id/recipeshoppinglist_remove"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintTop_toBottomOf="@+id/recipe_photo"></ImageButton>
 
         <ImageButton
             android:onClick="@{()->clickforremovelistener.onClick(recipe)}"
-            android:id="@+id/recipe_remove"
+            android:id="@+id/recipeshoppinglist_remove"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:src="@drawable/ic_baseline_remove_24"

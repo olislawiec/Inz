@@ -34,7 +34,7 @@
             app:layout_constraintTop_toTopOf="parent"></ImageView>
 
         <TextView
-            android:id="@+id/recipe_name"
+            android:id="@+id/recipe_nameshoppinglist"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:text="@{name}"

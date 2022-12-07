@@ -1,0 +1,70 @@
+<?xml version="1.0" encoding="utf-8"?>
+<layout xmlns:tools="http://schemas.android.com/tools"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:android="http://schemas.android.com/apk/res/android">
+
+    <data>
+        <variable
+            name="recipe"
+            type="com.example.myapplication.localdb.RecipeItemShoppingList" />
+        <variable
+            name="clicklfordetailslistener"
+            type="com.example.myapplication.screens.shopping.RecipeShoppingListListener" />
+
+        <variable
+            name="clickforremovelistener"
+            type="com.example.myapplication.screens.shopping.RecipeShoppingListListenerDelete" />
+
+
+    </data>
+
+    <androidx.constraintlayout.widget.ConstraintLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content">
+
+        <TextView
+            android:id="@+id/recipe_nameshoppinglist"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginLeft="20dp"
+            android:onClick="@{() -> clicklfordetailslistener.onClick(recipe)}"
+            android:textSize="16sp"
+            android:textStyle="bold"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toTopOf="parent"
+            app:shoppingitemname="@{recipe}"
+            tools:text="tu jest nazwa przepisu">
+
+        </TextView>
+
+        <TextView
+            android:id="@+id/recipe_shoppinglist"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginLeft="30dp"
+            android:layout_marginTop="3dp"
+            android:onClick="@{() -> clicklfordetailslistener.onClick(recipe)}"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@+id/recipe_nameshoppinglist"
+            app:showshoppinglistitem="@{recipe}"
+            tools:text="tu jest lista zakupow">
+
+        </TextView>
+
+        <ImageButton
+            android:id="@+id/recipeshoppinglist_remove"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:onClick="@{()->clickforremovelistener.onClick(recipe)}"
+            android:src="@drawable/ic_baseline_remove_24"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintHorizontal_bias="0.955"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toTopOf="parent">
+
+        </ImageButton>
+
+    </androidx.constraintlayout.widget.ConstraintLayout>
+</layout>

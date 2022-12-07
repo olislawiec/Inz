@@ -39,3 +39,17 @@ data class RecipeItemCalendar(
     var recipeImageUrl: String = "https://firebasestorage.googleapis.com/v0/b/asystentgotowania.appspot.com/o/notfound.png?alt=media&token=4847c5f0-bb50-41f1-9d10-54e18e375bd3")
 
 
+@Entity(tableName = "recipeshopinglist")
+data class RecipeItemShoppingList(
+    @PrimaryKey(autoGenerate = true)
+    var recipeId: Long = 0L,
+    @ColumnInfo(name = "recipe_nameshop")
+    var recipeName: String = "",
+    @ColumnInfo(name = "recipe_dateshop")
+    var recipedate: String="" ,
+    @ColumnInfo(name = "recipe_shopping_listshop")
+    var recipeShoppingList: String = "",
+    @ColumnInfo(name = "recipe_detailsshop")
+    var recipeDetails: String = "",
+    @ColumnInfo(name = "recipe_imageurlshop")
+    var recipeImageUrl: String = "https://firebasestorage.googleapis.com/v0/b/asystentgotowania.appspot.com/o/notfound.png?alt=media&token=4847c5f0-bb50-41f1-9d10-54e18e375bd3")

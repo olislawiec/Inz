@@ -7,6 +7,7 @@ import android.widget.TextView
 import androidx.core.net.toUri
 import androidx.databinding.BindingAdapter
 import com.bumptech.glide.Glide
+import com.example.myapplication.localdb.RecipeItemShoppingList
 import com.example.myapplication.screens.recipebook.AddeditrecipeViewModel
 import java.text.SimpleDateFormat
 import java.util.*
@@ -62,6 +63,19 @@ fun TextView.setText(date: String){
     val dateFormatter = SimpleDateFormat("dd/MM/yyyy")
     val dateformated = dateFormatter.format(Date(date.toLong()))
     setText(dateformated)
+}
+
+@BindingAdapter("showshoppinglistitem")
+fun TextView.setText(recipe: RecipeItemShoppingList){
+   setText(recipe.recipeShoppingList.replace("#"," ").replace("|","\n"))
+}
+
+@BindingAdapter("shoppingitemname")
+fun TextView.setName(recipe: RecipeItemShoppingList){
+    if(recipe.recipeName.isNullOrEmpty()){
+        visibility= View.GONE
+    }
+    setText(recipe.recipeName)
 }
 
 

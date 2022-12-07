@@ -39,7 +39,11 @@
         android:id="@+id/shopping"
         android:name="com.example.myapplication.screens.shopping.shopping"
         android:label="fragment_shopping"
-        tools:layout="@layout/fragment_shopping" />
+        tools:layout="@layout/fragment_shopping" >
+        <action
+            android:id="@+id/action_shopping_to_recipedetails"
+            app:destination="@id/recipedetails" />
+    </fragment>
     <fragment
         android:id="@+id/home"
         android:name="com.example.myapplication.screens.home.home"

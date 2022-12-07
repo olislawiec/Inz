@@ -65,6 +65,9 @@ class recipedetails : Fragment() {
             binding.addToMyRecipes.visibility=View.VISIBLE
         }
         binding.addToMyRecipes.setOnClickListener { viewModel.addRecipeToMyRecipes(args.recipe) }
+        binding.addToShoppinglist.setOnClickListener {
+            viewModel.addRecipeToShoppingList(args.recipe)
+        }
         binding.addToCalendar.setOnClickListener {
 
             val datePicker = MaterialDatePicker.Builder.datePicker()

@@ -7,6 +7,7 @@ import androidx.fragment.app.Fragment
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
+import android.widget.Toast
 import androidx.databinding.DataBindingUtil
 import androidx.lifecycle.Observer
 import androidx.navigation.fragment.findNavController
@@ -100,18 +101,34 @@ class addeditrecipe : Fragment() {
                 viewModel.addingredientrecipe(binding.ingredient.text.toString())
                 binding.ingredient.setText("")
             }
+            else{
+                Toast.makeText(
+                    requireActivity().application.applicationContext,
+                    "Pole składnika nie może być puste!",
+                    Toast.LENGTH_SHORT
+                ).show()
+            }
 
         }
         binding.buttonsubmit.setOnClickListener {
-            if(!args.recipeid.isNullOrEmpty()){
-                viewModel.editRecipe(args.recipeid!!.toLong(),binding.recipeNameedit.text.toString(),binding.recipedetailsedit.text.toString())
-                findNavController().popBackStack()
-            }
-            else{
-                viewModel.createrecpefunction(binding.recipeNameedit.text.toString(),binding.recipedetailsedit.text.toString())
-                findNavController().popBackStack()
-            }
+            if(binding.recipeNameedit.text.toString().isNullOrEmpty() || binding.recipedetailsedit.text.toString().isNullOrEmpty() || (viewModel.shoppinglist.value?: mutableListOf()).isEmpty()){
 
+                Toast.makeText(
+                    requireActivity().application.applicationContext,
+                    "Nazwa, Szczegóły i lista składników nie mogą być puste!",
+                    Toast.LENGTH_SHORT
+                ).show()
+        }
+            else{
+                if(!args.recipeid.isNullOrEmpty()){
+                    viewModel.editRecipe(args.recipeid!!.toLong(),binding.recipeNameedit.text.toString(),binding.recipedetailsedit.text.toString())
+                    findNavController().popBackStack()
+                }
+                else{
+                    viewModel.createrecpefunction(binding.recipeNameedit.text.toString(),binding.recipedetailsedit.text.toString())
+                    findNavController().popBackStack()
+                }
+            }
         }
         return binding.root
 

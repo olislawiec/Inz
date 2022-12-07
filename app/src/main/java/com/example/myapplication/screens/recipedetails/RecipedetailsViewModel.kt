@@ -7,6 +7,7 @@ import androidx.lifecycle.viewModelScope
 import com.example.myapplication.localdb.RecipeDao
 import com.example.myapplication.localdb.RecipeItem
 import com.example.myapplication.localdb.RecipeItemCalendar
+import com.example.myapplication.localdb.RecipeItemShoppingList
 import com.example.myapplication.objects.Recipe
 import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.launch
@@ -45,6 +46,23 @@ class RecipedetailsViewModel(
                 recipedb.recipeShoppingList=recipe.shoppinglist
                 recipedb.recipeImageUrl=recipe.image
                 recipedb.recipedate=date
+                dataSource.insert(recipedb)
+
+            }
+            updatedcal.value=true
+        }
+
+    }
+
+    fun addRecipeToShoppingList(recipe: Recipe){
+        viewModelScope.launch {
+            withContext(Dispatchers.IO){
+                val recipedb = RecipeItemShoppingList()
+                recipedb.recipeName=recipe.name
+                recipedb.recipeDetails=recipe.przepis
+                recipedb.recipeShoppingList=recipe.shoppinglist
+                recipedb.recipeImageUrl=recipe.image
+
                 dataSource.insert(recipedb)
 
             }
